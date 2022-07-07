@@ -14,7 +14,7 @@ class UserController extends Controller
 	public function index()
 	{
 		$users = \App\Models\User::all();
-		return view('user.index', compact('users'));
+		return view('user.index', compact('users')); // compact('users') é o equivalente a ['users' => $users]
 	}
 
 	/**
@@ -77,7 +77,7 @@ class UserController extends Controller
 	public function update(Request $request, $id)
 	{
 		$user = \App\Models\User::find($id);
-		$this->authorize('update', $user);
+		$this->authorize('update', $user); // Verifica se o usuário tem permissão para editar o usuário
 		$user->name = $request->name;
 		$user->email = $request->email;
 		$user->save();

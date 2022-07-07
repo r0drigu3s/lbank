@@ -28,21 +28,6 @@ class AccountController extends Controller
 	}
 
 	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @return \Illuminate\Http\Response
-	 */
-	public function store(Request $request)
-	{
-		$account = new \App\Models\Account();
-		$account->number_account = $request->number_account;
-		$account->balance = $request->balance;
-		$account->save();
-		return redirect()->route('account.index');
-	}
-
-	/**
 	 * Display the specified resource.
 	 *
 	 * @param  int  $id
@@ -52,34 +37,6 @@ class AccountController extends Controller
 	{
 		$account = \App\Models\Account::find($id);
 		return view('account.show', compact('account'));
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return \Illuminate\Http\Response
-	 */
-	public function edit($id)
-	{
-		$account = \App\Models\Account::find($id);
-		return view('account.edit', compact('account'));
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @param  int  $id
-	 * @return \Illuminate\Http\Response
-	 */
-	public function update(Request $request, $id)
-	{
-		$account = \App\Models\Account::find($id);
-		$account->number_account = $request->number_account;
-		$account->balance = $request->balance;
-		$account->save();
-		return redirect()->route('account.index');
 	}
 
 	/**
