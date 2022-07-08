@@ -26,11 +26,41 @@ Route::get('/', function () {
 });
 
 // rota para os Controllers e o método index
-Route::get('/users', [UserController::class, 'index']);
-Route::get('/accounts', [AccountController::class, 'index']);
-Route::get('/transactions', [TransactionController::class, 'index']);
+Route::get(
+	'/users',
+	[
+		UserController::class, 'index'
+	]
+);
+Route::get(
+	'/accounts',
+	[
+		AccountController::class, 'index'
+	]
+);
+Route::get(
+	'/transactions',
+	[
+		TransactionController::class, 'index'
+	]
+);
 
 // rota para os Controllers e o método create/operation
-Route::get('/users/create/{name}/{age}/{email}', [UserController::class, 'create']);
-Route::get('/accounts/create/{name}/{number_account}/{balance}', [AccountController::class, 'create']);
-Route::get('/transactions/operation/{name}/{number_account}/{type}/{amount}', [TransactionController::class, 'operation']);
+Route::get(
+	'/users/create/{name}/{age}/{email}',
+	[
+		UserController::class, 'create'
+	]
+);
+Route::get(
+	'/accounts/create/{name}/{number_account}/{balance}',
+	[
+		AccountController::class, 'create'
+	]
+);
+Route::get(
+	'/transactions/operation/{name}/{number_account}/{type}/{amount}',
+	[
+		TransactionController::class, 'operation'
+	]
+);
