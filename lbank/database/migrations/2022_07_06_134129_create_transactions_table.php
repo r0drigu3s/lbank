@@ -15,16 +15,10 @@ return new class extends Migration
 	{
 		Schema::create('transactions', function (Blueprint $table) {
 			$table->id();
-			$table->foreignId('user_id')
-				->constrained()
-				->onDelete('cascade')
-				->onUpdate('cascade');
-			$table->foreignId('account_id')
-				->constrained()
-				->onDelete('cascade')
-				->onUpdate('cascade');
+			$table->string('name');
+			$table->integer('number_account');
 			$table->string('type');
-			$table->float('value');
+			$table->float('amount');
 			$table->timestamps();
 		});
 	}

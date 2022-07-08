@@ -10,16 +10,14 @@ class Transaction extends Model
 	use HasFactory;
 
 	protected $fillable = [
-		'id',
-		'user_id',
-		'account_id',
+		'name',
+		'number_account',
 		'amount',
-		'description',
-		'type',
+		'type', // 'credit' or 'debit'
 	];
 
 	public function account()
 	{
-		return $this->belongsToMany(Account::class);
+		return $this->belongsTo(Account::class);
 	}
 }

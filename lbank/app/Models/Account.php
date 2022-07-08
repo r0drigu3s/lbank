@@ -10,11 +10,9 @@ class Account extends Model
 	use HasFactory;
 
 	protected $fillable = [
-		'id',
-		'user_id',
-		'account_id',
+		'name',
 		'number_account',
-		'balance',
+		'balance', // saldo em reais
 	];
 
 	public function user()

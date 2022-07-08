@@ -17,10 +17,10 @@ class TransactionFactory extends Factory
 	public function definition()
 	{
 		return [
-			'user_id' => $this->faker->numberBetween(1, 10),
-			'account_id' => $this->faker->numberBetween(1, 10),
+			'name' => $this->faker->name(),
+			'number_account' => $this->faker->unique(true)->numberBetween(1, 100),
 			'type' => $this->faker->randomElement(['credit', 'debit']),
-			'value' => $this->faker->randomFloat(2, 0, 100),
+			'amount' => $this->faker->randomFloat(2, 0, 100),
 		];
 	}
 }
