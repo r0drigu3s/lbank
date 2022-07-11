@@ -9,6 +9,8 @@ class Transaction extends Model
 {
 	use HasFactory;
 
+	protected $table = 'transactions';
+
 	protected $fillable = [
 		'name',
 		'number_account',
@@ -16,8 +18,8 @@ class Transaction extends Model
 		'type', // 'credit' or 'debit'
 	];
 
-	public function account()
+	public function accounts()
 	{
-		return $this->belongsTo(Account::class);
+		return $this->belongsToMany(Account::class);
 	}
 }

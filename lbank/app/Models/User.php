@@ -17,13 +17,16 @@ class User extends Authenticatable
 	 *
 	 * @var array<int, string>
 	 */
+
+	protected $table = 'users';
+
 	protected $fillable = [
 		'name',
 		'age',
 		'email',
 	];
 
-	public function account()
+	public function accounts()
 	{
 		return $this->hasOne(Account::class);
 	}

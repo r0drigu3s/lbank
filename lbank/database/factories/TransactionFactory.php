@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Account;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,10 +17,11 @@ class TransactionFactory extends Factory
 	 */
 	public function definition()
 	{
+		$account = Account::all()->pluck('id')->toArray();
+
 		return [
-			'name' => $this->faker->name(),
-			'number_account' => $this->faker->unique(true)->numberBetween(1, 100),
-			'type' => $this->faker->randomElement(['credit', 'debit']),
+			'account_id' => $this->faker->randomElement($account),
+			'type' => $this->faker->randomElement(['Crédito', 'Débito']),
 			'amount' => $this->faker->randomFloat(2, 0, 100),
 		];
 	}

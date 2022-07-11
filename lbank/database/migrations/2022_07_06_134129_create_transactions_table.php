@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Account;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,8 +16,11 @@ return new class extends Migration
 	{
 		Schema::create('transactions', function (Blueprint $table) {
 			$table->id();
-			$table->string('name');
-			$table->integer('number_account');
+			$table->index(['id' => 'id']);
+
+			$table->unsignedBigInteger('account_id');
+			$table->foreign('account_id')->references('id')->on('accounts');
+
 			$table->string('type');
 			$table->float('amount');
 			$table->timestamps();

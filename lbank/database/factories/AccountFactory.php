@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,9 +17,12 @@ class AccountFactory extends Factory
 	 */
 	public function definition()
 	{
+		$user = User::all()->pluck('id')->toArray();
+
 		return [
-			'name' => $this->faker->name(),
+			'user_id' => $this->faker->randomElement($user),
 			'number_account' => $this->faker->unique(true)->numberBetween(1, 100),
+			'type_of_account' => $this->faker->randomElement(['Corrente', 'Poupança']),
 			'balance' => $this->faker->randomFloat(2, 0, 100),
 		];
 	}

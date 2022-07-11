@@ -9,13 +9,15 @@ class Account extends Model
 {
 	use HasFactory;
 
+	protected $table = 'accounts';
+
 	protected $fillable = [
 		'name',
 		'number_account',
 		'balance', // saldo em reais
 	];
 
-	public function user()
+	public function users()
 	{
 		return $this->belongsTo(User::class);
 	}

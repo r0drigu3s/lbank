@@ -2,28 +2,108 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-	// retorna todos os usuários em JSON
+	/**
+	 * Lista todos os usuários.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
 	public function index()
 	{
-		$users = \App\Models\User::all();
+		$users = User::all();
+
+		echo "Lista de usuários:" . PHP_EOL;
 		return response()->json($users);
 	}
 
-	public function create(Request $request, \App\Models\User $user)
+	/**
+	 * Leva para a rota de criação de usuário.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function create()
 	{
-		// cria um novo usuário
-		$user = new \App\Models\User();
+		return response()->json(['message' => 'Criar usuário']);
+	}
+
+	/**
+	 * Salva um novo usuário.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @return \Illuminate\Http\Response
+	 */
+	public function store(Request $request)
+	{
+		$user = new User();
 		$user->name = $request->name;
 		$user->age = $request->age;
 		$user->email = $request->email;
 		$user->save();
 
 		echo "Usuário criado com sucesso!" . PHP_EOL;
+		return response()->json($user);
+	}
+
+	/**
+	 * Lista um usuário específico.
+	 *
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function show($id)
+	{
+		$user = User::findOrFail($id);
+
+		echo "Usuário encontrado com sucesso!" . PHP_EOL;
+		return response()->json($user);
+	}
+
+	/**
+	 * Leva para a rota de edição de usuário.
+	 *
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function edit($id)
+	{
+		return response()->json(['message' => 'Editar usuário']);
+	}
+
+	/**
+	 * Atualiza um usuário específico.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function update(Request $request, $id)
+	{
+		$user = User::findOrFail($id);
+		$user->name = $request->name;
+		$user->age = $request->age;
+		$user->email = $request->email;
+		$user->save();
+
+		echo "Usuário alterado com sucesso!" . PHP_EOL;
+		return response()->json($user);
+	}
+
+	/**
+	 * Deleta um usuário específico.
+	 *
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function destroy($id)
+	{
+		$user = User::findOrFail($id);
+		$user->delete();
+
+		echo "Usuário removido com sucesso!" . PHP_EOL;
 		return response()->json($user);
 	}
 }
