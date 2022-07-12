@@ -59,7 +59,7 @@ class TransactionController extends Controller
 	{
 		$transaction = Transaction::findOrFail($id);
 
-		echo "Transação:" . PHP_EOL;
+		echo "Transação encontrada:" . PHP_EOL;
 		return response()->json($transaction);
 	}
 
